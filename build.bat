@@ -334,6 +334,12 @@ if not exist "%TRUNK_DIR%\X2Lib\X2ServerProtocol.lib" set "NEED_PREREQS=1"
 
 if "%NEED_PREREQS%"=="1" (
     echo [^>] Building Prerequisite Static Libraries ^(KNCSDK, CxImage, LuaJIT, X2ServerProtocol^)...
+    if not exist "%TRUNK_DIR%\luajitLib\LuaJIT-2.0.2\src\lj_vm.obj" (
+        if defined VS_INSTALL_DIR if exist "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars32.bat" (
+            echo [^>] Generating LuaJIT x86 VM object ^(lj_vm.obj^)...
+            cmd /c "call "%VS_INSTALL_DIR%\VC\Auxiliary\Build\vcvars32.bat" >nul && cd /d "%TRUNK_DIR%\luajitLib\LuaJIT-2.0.2\src" && call msvcbuild.bat lj_vm >nul"
+        )
+    )
     for %%P in (
         "%TRUNK_DIR%\luaLib\luaLib_2010.vcxproj"
         "%TRUNK_DIR%\libxml\libxml_2010.vcxproj"

@@ -7,6 +7,7 @@
 ipch/
 [Bb]uild/
 *.obj
+!JP_TW_EU_CN_US/Trunk/luajitLib/LuaJIT-2.0.2/src/lj_vm.obj
 *.o
 *.pch
 *.pdb

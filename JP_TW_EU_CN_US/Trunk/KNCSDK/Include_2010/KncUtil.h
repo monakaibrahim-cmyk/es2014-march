@@ -452,7 +452,7 @@ inline std::vector< T > NumberShuffle( const std::vector< T >& vecSource )
 inline std::wstring GetCurrentTimeString()
 {
 	CTime tCurTime = CTime::GetCurrentTime();
-	std::wstring wstrRegDate = (const wchar_t*)tCurTime.Format( _T( "%Y-%m-%d %H:%M:%S" ) );
+	std::wstring wstrRegDate = CStringW( tCurTime.Format( _T( "%Y-%m-%d %H:%M:%S" ) ) ).GetString();
 	return wstrRegDate;
 }
 //#endif SERV_DUNGEON_STAGE_LOG
