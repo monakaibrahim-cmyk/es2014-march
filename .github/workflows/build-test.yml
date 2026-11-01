@@ -42,7 +42,7 @@ jobs:
             "ExternalLib\DirectX_SDK_June2010\Include\d3dx9.h",
             "ExternalLib\DirectX_SDK_June2010\Lib\x86\d3dx9.lib",
             "ExternalLib\vcpkg_x86-windows\include\zlib.h",
-            "ExternalLib\vcpkg_x86-windows\lib\zlib.lib",
+            "ExternalLib\vcpkg_x86-windows\lib\z.lib",
             "ExternalLib\vcpkg_x86-windows\lib\libpng16.lib"
           )
           foreach ($item in $checks) {
@@ -55,7 +55,7 @@ jobs:
 
       - name: Run Build & Post-Build Staging (build.bat)
         shell: cmd
-        run: build.bat all release /rebuild
+        run: build.bat all release
 
       - name: Verify Compiled Executables & Staged Deployment
         shell: pwsh

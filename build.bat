@@ -372,16 +372,39 @@ if /i "%TARGET%"=="game" goto do_game
 goto do_all
 
 :do_all
-echo [^>] Building All: Client and Server Cluster...
+echo [^>] Building Server Cluster: Login, Center, Channel, Global, Game...
 if "%IS_REBUILD%"=="1" (
-    "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:Rebuild
+    "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:LoginServer:Rebuild;CenterServer:Rebuild;ChannelServer:Rebuild;GlobalServer:Rebuild;GameServer:Rebuild
 ) else (
-    "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:Build
+    "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:LoginServer;CenterServer;ChannelServer;GlobalServer;GameServer
 )
-if errorlevel 1 set "BUILD_FAILED=1"
-goto build_done
+if errorlevel 1 (
+    set "BUILD_FAILED=1"
+    goto build_done
+)
+goto do_client
 
 :do_client
+set "NEED_CLIENT_LIBS=0"
+if "%IS_REBUILD%"=="1" set "NEED_CLIENT_LIBS=1"
+if not exist "%TRUNK_DIR%\KTDXLIB\KTDXLIB.lib" set "NEED_CLIENT_LIBS=1"
+if not exist "%TRUNK_DIR%\X2Lib\X2Lib.lib" set "NEED_CLIENT_LIBS=1"
+
+if "%NEED_CLIENT_LIBS%"=="1" (
+    echo [^>] Building Client Static Libraries ^(KTDXLIB, X2Lib^)...
+    if "%IS_REBUILD%"=="1" (
+        "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:KTDXLIB:Rebuild
+        if errorlevel 1 ( set "BUILD_FAILED=1" & goto build_done )
+        "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:X2Lib:Rebuild
+        if errorlevel 1 ( set "BUILD_FAILED=1" & goto build_done )
+    ) else (
+        "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:KTDXLIB
+        if errorlevel 1 ( set "BUILD_FAILED=1" & goto build_done )
+        "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:X2Lib
+        if errorlevel 1 ( set "BUILD_FAILED=1" & goto build_done )
+    )
+)
+
 echo [^>] Building Client: X2.exe...
 if "%IS_REBUILD%"=="1" (
     "%MSBUILD_EXE%" "%SOLUTION%" %MSBUILD_FLAGS% /t:X2:Rebuild
