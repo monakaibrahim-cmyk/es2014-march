@@ -393,8 +393,8 @@ goto do_client
 :do_client
 set "NEED_CLIENT_LIBS=0"
 if "%IS_REBUILD%"=="1" set "NEED_CLIENT_LIBS=1"
-if not exist "%TRUNK_DIR%\KTDXLIB\KTDXLIB.lib" set "NEED_CLIENT_LIBS=1"
-if not exist "%TRUNK_DIR%\X2Lib\X2Lib.lib" set "NEED_CLIENT_LIBS=1"
+if not exist "%TRUNK_DIR%\X2\KTDXLIB.lib" set "NEED_CLIENT_LIBS=1"
+if not exist "%TRUNK_DIR%\X2\X2Lib.lib" set "NEED_CLIENT_LIBS=1"
 
 if "%NEED_CLIENT_LIBS%"=="1" (
     echo [^>] Building Client Static Libraries ^(KTDXLIB, X2Lib^)...

@@ -11,6 +11,8 @@
     <DXSDK_DIR Condition="'$(DXSDK_DIR)'=='' or !exists('$(DXSDK_DIR)Include\d3dx9.h')">$(MSBuildThisFileDirectory)..\..\ExternalLib\DirectX_SDK_June2010\</DXSDK_DIR>
     <VCPKG_INSTALLED_DIR Condition="'$(VCPKG_INSTALLED_DIR)'=='' or !exists('$(VCPKG_INSTALLED_DIR)\include\zlib.h')">$(MSBuildThisFileDirectory)..\..\ExternalLib\vcpkg_x86-windows</VCPKG_INSTALLED_DIR>
     <FREE_TYPE_DIR Condition="'$(FREE_TYPE_DIR)'=='' or !exists('$(FREE_TYPE_DIR)include\ft2build.h')">$(MSBuildThisFileDirectory)..\..\ExternalLib\freetype-2.4.11\</FREE_TYPE_DIR>
+    <!-- Disable ambient global vcpkg MSBuild integration so builds are 100% deterministic across machines -->
+    <VcpkgEnabled>false</VcpkgEnabled>
   </PropertyGroup>
 
   <ItemDefinitionGroup>
@@ -23,5 +25,8 @@
       <PreprocessorDefinitions>_USE_32BIT_TIME_T;CLIENT_COUNTRY_US;SERV_COUNTRY_US;CLIENT_COUNTRY_GLOBAL;SERV_COUNTRY_GLOBAL;_IN_HOUSE_;_CONVERT_VS_2010;BOOST_TIMER_ENABLE_DEPRECATED;BOOST_ALLOW_DEPRECATED_HEADERS;BOOST_BIND_GLOBAL_PLACEHOLDERS;_HAS_STD_BYTE=0;_HAS_AUTO_PTR_ETC=1;_SILENCE_ALL_CXX23_DEPRECATION_WARNINGS;_SILENCE_STDEXT_HASH_DEPRECATION_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(MSBuildThisFileDirectory)KNCSDK\Include_2010;$(MSBuildThisFileDirectory)KNCSDK\Include_2010\luaLib;$(MSBuildThisFileDirectory)KNCSDK\Include_2010\Serializer;$(MSBuildThisFileDirectory)KncWX2Server\Common;$(MSBuildThisFileDirectory)KncWX2Server\Common\Room;$(MSBuildThisFileDirectory)KncWX2Server\Common\X2Data;$(MSBuildThisFileDirectory)KncWX2Server\Common\GameEvent;$(MSBuildThisFileDirectory)KncWX2Server\Common\GameSysVal;$(MSBuildThisFileDirectory)KncWX2Server\Common\Socket;$(MSBuildThisFileDirectory)KncWX2Server\Common\ui;$(BOOST_DIR);$(VCPKG_INSTALLED_DIR)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>$(VCPKG_INSTALLED_DIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
   </ItemDefinitionGroup>
 </Project>

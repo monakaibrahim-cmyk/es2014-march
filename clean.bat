@@ -30,7 +30,7 @@ set "LJ_VM_OBJ=%REPO_ROOT%\JP_TW_EU_CN_US\Trunk\luajitLib\LuaJIT-2.0.2\src\lj_vm
 if exist "%LJ_VM_OBJ%" copy /Y "%LJ_VM_OBJ%" "%LJ_VM_OBJ%.keep" >nul 2>&1
 
 :: Delete compiler intermediate files across workspace
-del /s /f /q *.obj *.pch *.pdb *.ilk *.idb *.iobj *.ipdb *.map *.tlog *.lastcodeanalysissucceeded *.ncb *.suo *.user *.userosscache *.sln.docstates *.tmp *.bak *.orig 2>nul
+del /s /f /q *.obj *.pch *.pdb *.ilk *.idb *.iobj *.ipdb *.map *.tlog *.res *.recipe *.intermediate.manifest *.FileListAbsolute.txt *.lastcodeanalysissucceeded *.ncb *.suo *.user *.userosscache *.sln.docstates *.tmp *.bak *.orig 2>nul
 
 if exist "%LJ_VM_OBJ%.keep" move /Y "%LJ_VM_OBJ%.keep" "%LJ_VM_OBJ%" >nul 2>&1
 

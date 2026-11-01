@@ -18,6 +18,10 @@ ipch/
 *.map
 *.tlog
 *.log
+*.res
+*.recipe
+*.intermediate.manifest
+*.FileListAbsolute.txt
 *.aps
 *.ncb
 *.suo
@@ -80,6 +84,10 @@ JP_TW_EU_CN_US/Trunk/KTDXLIB/KTDXLIB.lib
 JP_TW_EU_CN_US/Trunk/KTDXLIB/KTDXLIBD.lib
 JP_TW_EU_CN_US/Trunk/X2Lib/X2Lib.lib
 JP_TW_EU_CN_US/Trunk/X2Lib/X2LibD.lib
+JP_TW_EU_CN_US/Trunk/X2/KTDXLIB.lib
+JP_TW_EU_CN_US/Trunk/X2/KTDXLIBD.lib
+JP_TW_EU_CN_US/Trunk/X2/X2Lib.lib
+JP_TW_EU_CN_US/Trunk/X2/X2LibD.lib
 JP_TW_EU_CN_US/Trunk/X2Lib/X2ServerProtocol.lib
 JP_TW_EU_CN_US/Trunk/X2Lib/X2ServerProtocolD.lib
 
@@ -88,7 +96,9 @@ JP_TW_EU_CN_US/Trunk/KncWX2Server/*/Release/*.exe
 JP_TW_EU_CN_US/Trunk/KncWX2Server/*/Release/*.lib
 JP_TW_EU_CN_US/Trunk/KncWX2Server/*/Release/*.exp
 JP_TW_EU_CN_US/Trunk/KncWX2Server/*/Debug/
-JP_TW_EU_CN_US/Trunk/X2/Release/X2.exe
+JP_TW_EU_CN_US/Trunk/X2/Release/*.exe
+JP_TW_EU_CN_US/Trunk/X2/Release/*.lib
+JP_TW_EU_CN_US/Trunk/X2/Release/*.exp
 JP_TW_EU_CN_US/Trunk/X2/Debug/
 JP_TW_EU_CN_US/Trunk/LuaCompileTool/Release/*.exe
 

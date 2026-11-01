@@ -1,3 +1,0 @@
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\ChannelServer\Release\z.dll
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\ChannelServer\Release\ChannelS.CA439062.Up2Date
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\ChannelServer\Release\ChannelServer.exe

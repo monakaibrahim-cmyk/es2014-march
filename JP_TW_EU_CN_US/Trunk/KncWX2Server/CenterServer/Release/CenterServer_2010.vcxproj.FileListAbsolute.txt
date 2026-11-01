@@ -1,3 +1,0 @@
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\CenterServer\Release\z.dll
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\CenterServer\Release\CenterServer.exe
-D:\ElSword\JP_TW_EU_CN_US\Trunk\KncWX2Server\CenterServer\Release\CenterSe.CDA67855.Up2Date
