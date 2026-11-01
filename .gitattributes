@@ -1,0 +1,39 @@
+# ==============================================================================
+# Git Attributes - Elsword 2014 (Windows Visual Studio C++ Repository)
+# ==============================================================================
+
+# Disable automatic EOL conversion by default to preserve legacy encodings (EUC-KR / UTF-16LE .rc files)
+* -text
+
+# Force CRLF for Windows Batch, PowerShell, and Visual Studio Solution/Project files
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.sln text eol=crlf
+*.vcxproj text eol=crlf
+*.vcxproj.filters text eol=crlf
+*.props text eol=crlf
+*.targets text eol=crlf
+
+# Standard text files
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.py text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Explicitly mark binary assets and libraries
+*.lib binary
+*.dll binary
+*.exe binary
+*.kom binary
+*.dds binary
+*.tga binary
+*.png binary
+*.jpg binary
+*.bmp binary
+*.ico binary
+*.cur binary
+*.rc binary
+*.aps binary

@@ -1,0 +1,79 @@
+name: Build Test (Server & Client)
+
+on:
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+  workflow_dispatch:
+
+jobs:
+  build-win32:
+    name: Visual Studio Win32 Build & Stage (Release)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Visual Studio C++ x86 & MFC/ATL Components
+        shell: pwsh
+        run: |
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsPath = & $vswhere -latest -products * -requires Microsoft.Component.MSBuild -property installationPath
+          Write-Host "Detected Visual Studio at: $vsPath"
+
+          $mfcHeaders = Get-ChildItem -Path "$vsPath\VC\Tools\MSVC\*\atlmfc\include\afxwin.h" -ErrorAction SilentlyContinue
+          if (-not $mfcHeaders) {
+            Write-Host "Installing missing C++ MFC and ATL x86 components via Visual Studio Installer..."
+            $installer = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vs_installer.exe"
+            Start-Process -FilePath $installer -ArgumentList "modify --installPath `"$vsPath`" --add Microsoft.VisualStudio.Component.VC.ATLMFC --add Microsoft.VisualStudio.Component.VC.Tools.x86.x64 --quiet --norestart" -Wait
+          } else {
+            Write-Host "MFC/ATL x86 headers verified: $($mfcHeaders[0].FullName)"
+          }
+
+      - name: Verify Bundled ExternalLib SDKs (Boost, DirectX SDK June 2010, vcpkg x86)
+        shell: pwsh
+        run: |
+          $checks = @(
+            "ExternalLib\Boost\boost\version.hpp",
+            "ExternalLib\DirectX_SDK_June2010\Include\d3dx9.h",
+            "ExternalLib\DirectX_SDK_June2010\Lib\x86\d3dx9.lib",
+            "ExternalLib\vcpkg_x86-windows\include\zlib.h",
+            "ExternalLib\vcpkg_x86-windows\lib\zlib.lib",
+            "ExternalLib\vcpkg_x86-windows\lib\libpng16.lib"
+          )
+          foreach ($item in $checks) {
+            if (-not (Test-Path $item)) {
+              Write-Error "Missing bundled dependency in repository: $item"
+              exit 1
+            }
+            Write-Host "[OK] Bundled SDK file verified: $item"
+          }
+
+      - name: Run Build & Post-Build Staging (build.bat)
+        shell: cmd
+        run: build.bat all release /rebuild
+
+      - name: Verify Compiled Executables & Staged Deployment
+        shell: pwsh
+        run: |
+          $requiredBins = @(
+            "Deploy\ElSwordServer\CenterServer\CenterServer.exe",
+            "Deploy\ElSwordServer\ChannelServer\ChannelServer.exe",
+            "Deploy\ElSwordServer\GameServer\GameServer.exe",
+            "Deploy\ElSwordServer\GlobalServer\GlobalServer.exe",
+            "Deploy\ElSwordServer\LoginServer\LoginServer.exe",
+            "Deploy\ElSwordServer\ServerResource\DBConfig.lua",
+            "JP_TW_EU_CN_US\Trunk\X2\Release\X2.exe"
+          )
+          foreach ($bin in $requiredBins) {
+            if (-not (Test-Path $bin)) {
+              Write-Error "Missing expected build artifact: $bin"
+              exit 1
+            }
+            $sizeMB = [math]::Round((Get-Item $bin).Length / 1MB, 2)
+            Write-Host "[OK] $bin ($sizeMB MB)"
+          }

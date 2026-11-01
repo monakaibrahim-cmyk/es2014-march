@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{8B828DA3-9971-420A-80F6-07555897C189}</ProjectGuid>
+    <RootNamespace>KncSecurity</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <OutDir>$(ProjectDir)..\lib_2010\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <TargetName>KncSecurity71MD</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <TargetName>KncSecurity71MDd</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>../Include_2010;../Include_2010/KncSecurity;../Include_2010/cryptopp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_LIB;CRYPTOPP_DISABLE_ASM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)KncSecurity71MD.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Lib>
+      <OutputFile>$(OutDir)KncSecurity71MDd.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Include_2010\KncSecurity\ByteStream.cpp" />
+    <ClCompile Include="..\Include_2010\KncSecurity\KncSecurity.cpp" />
+    <ClCompile Include="..\Include_2010\KncSecurity\SADatabase.cpp" />
+    <ClCompile Include="..\Include_2010\KncSecurity\SecureBuffer.cpp" />
+    <ClCompile Include="..\Include_2010\KncSecurity\SecurityAssociation.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\3way.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\adler32.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\algebra.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\algparam.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\arc4.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\asn.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\base32.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\base64.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\basecode.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\bfinit.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\blowfish.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\blumshub.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\camellia.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\cast.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\casts.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\cbcmac.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\channels.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\crc.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\cryptlib.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\default.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\des.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\dessp.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\dh.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\dh2.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\dll.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\dsa.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\ec2n.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\eccrypto.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\ecp.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\elgamal.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\eprecomp.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\esign.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\files.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\filters.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\fips140.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\fipstest.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gf256.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gf2_32.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gf2n.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gfpcrypt.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gost.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\gzip.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\haval.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\hex.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\hmac.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\hrtimer.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\ida.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\idea.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\integer.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\iterhash.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\luc.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\mars.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\marss.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\md2.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\md4.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\md5.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\md5mac.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\misc.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\modes.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\modexppc.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\mqueue.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\mqv.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\nbtheory.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\network.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\oaep.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\osrng.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\panama.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\pch.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\pkcspad.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\polynomi.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\pssr.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\pubkey.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\queue.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rabin.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\randpool.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rc2.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rc5.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rc6.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rdtables.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rijndael.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\ripemd.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rng.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rsa.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\rw.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\safer.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\seal.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\serpent.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\sha.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\shacal2.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\shark.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\sharkbox.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\simple.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\skipjack.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\socketft.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\square.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\squaretb.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\strciphr.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\tea.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\tftables.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\tiger.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\tigertab.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\trdlocal.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\ttmac.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\twofish.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\wait.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\wake.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\whrlpool.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\winpipes.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\xtr.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\xtrcrypt.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\zdeflate.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\zinflate.cpp" />
+    <ClCompile Include="..\Include_2010\cryptopp\zlib.cpp" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>

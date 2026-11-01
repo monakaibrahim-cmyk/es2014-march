@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <!-- Windows SDK headers take precedence to ensure modern dxgitype.h / wincodec.h; legacy DXSDK is at the end for d3dx9math.h -->
+    <IncludePath>$(WindowsSDK_IncludePath);$(IncludePath);$(BOOST_DIR);$(VCPKG_INSTALLED_DIR)\include;$(VCPKG_INSTALLED_DIR)\include\libxml2;$(MSBuildThisFileDirectory)libxml;$(MSBuildThisFileDirectory)Steamworks;$(DXSDK_DIR)Include</IncludePath>
+    <LibraryPath>$(LibraryPath);$(MSBuildThisFileDirectory)KNCSDK\lib_2010;$(BOOST_DIR)lib32-msvc-14.5;$(BOOST_DIR)lib32-msvc-14.3;$(BOOST_DIR)stage\lib;$(BOOST_DIR)libs;$(VCPKG_INSTALLED_DIR)\lib;$(MSBuildThisFileDirectory)Steamworks\lib;$(DXSDK_DIR)Lib\x86</LibraryPath>
+  </PropertyGroup>
+
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <MinimalRebuild>false</MinimalRebuild>
+    </ClCompile>
+    <Link>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+</Project>
